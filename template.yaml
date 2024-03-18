@@ -6,6 +6,10 @@ Description: >
   Sample SAM Template for mammamia-tags
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Parameters:
+  AirtableApiKey:
+    Type: String
+    Description: The Airtable Api Key
 Globals:
   Function:
     Timeout: 300
@@ -25,6 +29,9 @@ Resources:
       Runtime: provided.al2023
       Architectures:
       - arm64
+      Environment: 
+        Variables:
+          AIRTABLE_API_KEY: !Ref AirtableApiKey
       Events:
         SyncTags:
           Type: Schedule
