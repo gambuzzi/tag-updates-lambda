@@ -33,7 +33,7 @@ struct AirtableResponse <T> {
 }
 
 async fn get_table<T : DeserializeOwned > (airtable_api_key: &str, table_id: &str) -> Result<Vec<T>, Error> {
-    let menu_url = format!("https://api.airtable.com/v0/appFsXK6zp1O2SyV8/{}", table_id);
+    let menu_url = format!("https://api.airtable.com/v0/app2iGoHc7c47uF5J/{}", table_id);
     let client = reqwest::Client::new();
     let mut ret = vec![];
     let mut offset = "0".to_string();
@@ -67,8 +67,8 @@ async fn function_handler(event: LambdaEvent<Value>) -> Result<(), Error> {
     let airtable_api_key = std::env::var("AIRTABLE_API_KEY").expect("AIRTABLE_API_KEY must be set");
     
     // todo this could be done in parallel
-    let menu = get_table::<MenuItem>(&airtable_api_key, "tblHWvgCofYT2Puac").await?;
-    let tags = get_table::<TagsItem>(&airtable_api_key, "tblC2T0WC2MTR3MQ3").await?;
+    let menu = get_table::<MenuItem>(&airtable_api_key, "tbl4MeUd1X997rBkN").await?;
+    let tags = get_table::<TagsItem>(&airtable_api_key, "tblZSCExfKX9WFT0E").await?;
     
     // todo # create new tags (POST)
 
